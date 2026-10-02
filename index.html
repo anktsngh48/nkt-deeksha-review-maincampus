@@ -114,6 +114,7 @@
   .btn.secondary { background: transparent; color: var(--brand); border: 1.5px solid var(--line); margin-top: 10px; }
   .btn:focus-visible { outline: 3px solid var(--brand); outline-offset: 3px; }
 
+  .linkbtn { display: block; text-align: center; margin-top: 16px; font-size: 14px; font-weight: 600; color: var(--brand); text-decoration: underline; text-underline-offset: 3px; padding: 6px 4px; }
   .steps { margin: 18px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; }
   .steps li { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--muted); }
   .steps b {
@@ -201,7 +202,9 @@
     <div class="count"><span id="draftCount">0</span>/750</div>
     <div class="msg info hidden" id="tipMsg">Tip: go back, pick a few options or add a line of your own, then tap "Write a different draft" for a more specific review.</div>
 
-    <a class="btn" id="openBtn" href="#" target="_blank" rel="noopener">Copy &amp; open Google</a>
+    <a class="btn" id="openBtn" href="#" target="_blank" rel="noopener noreferrer">Copy &amp; open Google</a>
+    <a class="linkbtn" id="mapsLink" href="#" target="_blank" rel="noopener noreferrer">Google showed a search page instead? Open our campus in Google Maps</a>
+    <p class="note" style="margin-top:6px;text-align:center">In Maps: tap <b>Reviews</b>, then <b>Write a review</b>, and paste your text.</p>
     <button class="btn secondary" id="copyBtn" type="button">Copy text only</button>
     <button class="btn secondary" id="redoBtn" type="button">Write a different draft</button>
 
@@ -223,6 +226,7 @@
     placeId: 'ChIJz_hsPW5ArjsRpfbcrvb90XU'   // Google Place ID: JEE/NEET Wing listing
   };
   const REVIEW_URL = 'https://search.google.com/local/writereview?placeid=' + encodeURIComponent(CONFIG.placeId);
+  const MAPS_URL = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(CONFIG.campus) + '&query_place_id=' + encodeURIComponent(CONFIG.placeId);
 
   const LABELS = ['', 'Poor', 'Could be better', 'Okay', 'Good', 'Excellent'];
   const ROLES = ['Student', 'Parent', 'Alumnus'];
@@ -426,6 +430,12 @@
   openBtn.addEventListener('click', () => {
     copyText($('draft').value.trim());
     toast('Copied. Paste it on Google and tap Post.');
+  });
+  const mapsLink = $('mapsLink');
+  mapsLink.href = MAPS_URL;
+  mapsLink.addEventListener('click', () => {
+    copyText($('draft').value.trim());
+    toast('Copied. In Maps, tap Reviews, then Write a review.');
   });
   $('copyBtn').addEventListener('click', () => {
     copyText($('draft').value.trim());
