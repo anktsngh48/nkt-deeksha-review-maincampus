@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Share your experience · Deeksha Vedantu Main Campus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fbf7f2;
+    --card: #ffffff;
+    --ink: #1d2428;
+    --muted: #66727a;
+    --line: #e7dfd5;
+    --brand: #0f6b66;
+    --brand-ink: #ffffff;
+    --brand-soft: #e3f1ef;
+    --star: #f2a31b;
+    --star-off: #e4dccf;
+    --warn: #8a4b08;
+    --warn-soft: #fdf0dc;
+    --radius: 18px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121719;
+      --card: #1b2225;
+      --ink: #eef2f3;
+      --muted: #9aa8ae;
+      --line: #2c373b;
+      --brand: #35b3aa;
+      --brand-ink: #0b1b1a;
+      --brand-soft: #1c3533;
+      --star: #f5b335;
+      --star-off: #34403f;
+      --warn: #f0c27a;
+      --warn-soft: #3a2e1b;
+    }
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.45;
+    padding: 0 16px calc(32px + env(safe-area-inset-bottom));
+  }
+  .wrap { max-width: 520px; margin: 0 auto; }
+  header { padding: 28px 4px 18px; display: flex; gap: 14px; align-items: center; }
+  .mark {
+    width: 46px; height: 46px; border-radius: 14px; flex: none;
+    background: var(--brand); color: var(--brand-ink);
+    display: grid; place-items: center; font-weight: 800; font-size: 22px;
+  }
+  header h1 { font-size: 17px; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+  header p { margin: 2px 0 0; font-size: 13px; color: var(--muted); }
+
+  .card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 22px 20px; margin-bottom: 14px;
+  }
+  h2 { font-size: 22px; line-height: 1.2; margin: 0 0 4px; letter-spacing: -0.02em; font-weight: 800; }
+  .sub { color: var(--muted); font-size: 14px; margin: 0 0 18px; }
+
+  .stars { display: flex; justify-content: space-between; gap: 6px; margin: 4px 0 8px; }
+  .star {
+    flex: 1; aspect-ratio: 1 / 1; max-width: 80px;
+    background: none; border: 0; padding: 0; cursor: pointer;
+    color: var(--star-off); transition: transform .12s ease, color .12s ease;
+  }
+  .star svg { width: 100%; height: 100%; display: block; }
+  .star.on { color: var(--star); }
+  .star:active { transform: scale(.9); }
+  .star:focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; border-radius: 12px; }
+  .star-label { min-height: 22px; font-weight: 700; font-size: 15px; text-align: center; color: var(--brand); }
+
+  .hidden { display: none !important; }
+  .field { margin-top: 22px; }
+  .field > label, .field > .lbl { display: block; font-weight: 700; font-size: 14px; margin-bottom: 10px; }
+  .field .opt { font-weight: 500; color: var(--muted); }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    font: inherit; font-size: 14px; font-weight: 600;
+    background: var(--card); color: var(--ink);
+    border: 1.5px solid var(--line); border-radius: 999px;
+    padding: 9px 14px; cursor: pointer; transition: all .12s ease;
+    min-height: 40px;
+  }
+  .chip[aria-pressed="true"] { background: var(--brand-soft); border-color: var(--brand); color: var(--brand); }
+  .chip.improve[aria-pressed="true"] { background: var(--warn-soft); border-color: var(--warn); color: var(--warn); }
+  .chip:focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; }
+
+  textarea {
+    width: 100%; font: inherit; font-size: 15px; color: var(--ink);
+    background: var(--bg); border: 1.5px solid var(--line); border-radius: 14px;
+    padding: 12px 14px; resize: vertical; min-height: 84px;
+  }
+  textarea:focus { outline: none; border-color: var(--brand); }
+  .count { text-align: right; font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+  .btn {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%; font: inherit; font-size: 16px; font-weight: 700;
+    background: var(--brand); color: var(--brand-ink);
+    border: 0; border-radius: 14px; padding: 15px 18px; cursor: pointer;
+    text-decoration: none; margin-top: 22px; min-height: 52px;
+  }
+  .btn:disabled { opacity: .55; cursor: default; }
+  .btn.secondary { background: transparent; color: var(--brand); border: 1.5px solid var(--line); margin-top: 10px; }
+  .btn:focus-visible { outline: 3px solid var(--brand); outline-offset: 3px; }
+
+  .steps { margin: 18px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+  .steps li { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--muted); }
+  .steps b {
+    flex: none; width: 22px; height: 22px; border-radius: 50%;
+    background: var(--brand-soft); color: var(--brand); font-size: 12px;
+    display: grid; place-items: center;
+  }
+  .note { font-size: 12.5px; color: var(--muted); margin: 14px 2px 0; }
+  .msg { font-size: 14px; border-radius: 12px; padding: 10px 12px; margin-top: 14px; }
+  .msg.info { background: var(--brand-soft); color: var(--brand); }
+  .msg.warn { background: var(--warn-soft); color: var(--warn); }
+  .toast {
+    position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom));
+    transform: translateX(-50%) translateY(20px); opacity: 0;
+    background: var(--ink); color: var(--bg); padding: 11px 16px; border-radius: 12px;
+    font-size: 14px; font-weight: 600; transition: all .2s ease; pointer-events: none;
+    max-width: calc(100% - 32px); text-align: center;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation-duration: 2s !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="mark" aria-hidden="true">D</div>
+    <div>
+      <h1>Deeksha Vedantu · Main Campus</h1>
+      <p>Kanakapura Main Road, Bengaluru</p>
+    </div>
+  </header>
+
+  <!-- Step 1: rating -->
+  <section class="card" id="stepRate" aria-labelledby="rateTitle">
+    <h2 id="rateTitle">How was your experience?</h2>
+    <p class="sub">Tap a star. It takes under a minute.</p>
+    <div class="stars" id="stars" role="group" aria-label="Star rating"></div>
+    <div class="star-label" id="starLabel" aria-live="polite"></div>
+  </section>
+
+  <!-- Step 2: details -->
+  <section class="card hidden" id="stepDetails" aria-labelledby="detailsTitle">
+    <h2 id="detailsTitle">Tell us a little more</h2>
+    <p class="sub">Pick what applies. We'll turn it into a draft you can edit.</p>
+
+    <div class="field">
+      <span class="lbl">I am a</span>
+      <div class="chips" id="roleChips" data-single="role"></div>
+    </div>
+
+    <div class="field">
+      <span class="lbl">Program <span class="opt">(optional)</span></span>
+      <div class="chips" id="programChips" data-single="program"></div>
+    </div>
+
+    <div class="field">
+      <span class="lbl">What went well? <span class="opt">(optional)</span></span>
+      <div class="chips" id="positiveChips"></div>
+    </div>
+
+    <div class="field">
+      <span class="lbl">What could be better? <span class="opt">(optional)</span></span>
+      <div class="chips" id="improveChips"></div>
+    </div>
+
+    <div class="field">
+      <label for="notes">Anything else? <span class="opt">(optional, any language)</span></label>
+      <textarea id="notes" maxlength="300" placeholder="For example: a teacher who helped you, a moment that stood out…"></textarea>
+      <div class="count"><span id="notesCount">0</span>/300</div>
+    </div>
+
+    <div class="msg warn hidden" id="lowMsg">Thanks for being honest. Specific feedback is the most useful way to help us improve.</div>
+
+    <button class="btn" id="draftBtn" type="button">Draft my review</button>
+  </section>
+
+  <!-- Step 3: draft -->
+  <section class="card hidden" id="stepDraft" aria-labelledby="draftTitle">
+    <h2 id="draftTitle">Your draft</h2>
+    <p class="sub">Written from your answers. Change anything so it sounds like you.</p>
+
+    <label for="draft" class="hidden">Review text</label>
+    <textarea id="draft" maxlength="750" style="min-height:150px"></textarea>
+    <div class="count"><span id="draftCount">0</span>/750</div>
+    <div class="msg info hidden" id="tipMsg">Tip: go back, pick a few options or add a line of your own, then tap "Write a different draft" for a more specific review.</div>
+
+    <a class="btn" id="openBtn" href="#" target="_blank" rel="noopener">Copy &amp; open Google</a>
+    <button class="btn secondary" id="copyBtn" type="button">Copy text only</button>
+    <button class="btn secondary" id="redoBtn" type="button">Write a different draft</button>
+
+    <ol class="steps">
+      <li><b>1</b><span>Tap the button. Your text is copied and Google opens.</span></li>
+      <li><b>2</b><span>On Google, tap your stars and paste the text in the box.</span></li>
+      <li><b>3</b><span>Tap Post. Nothing is shared until you do.</span></li>
+    </ol>
+    <p class="note">Everything you pick stays on your phone. Google will ask you to sign in with your own account.</p>
+  </section>
+
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+  // ---- Settings ------------------------------------------------------------
+  const CONFIG = {
+    campus: 'Deeksha Vedantu Main Campus',
+    placeId: 'ChIJz_hsPW5ArjsRpfbcrvb90XU'   // Google Place ID: JEE/NEET Wing listing
+  };
+  const REVIEW_URL = 'https://search.google.com/local/writereview?placeid=' + encodeURIComponent(CONFIG.placeId);
+
+  const LABELS = ['', 'Poor', 'Could be better', 'Okay', 'Good', 'Excellent'];
+  const ROLES = ['Student', 'Parent', 'Alumnus'];
+  const PROGRAMS = ['NEET', 'JEE', 'CET', 'PU Board', 'Foundation'];
+  const POSITIVES = [
+    'Expert faculty', 'Clears doubts patiently', 'Regular tests and feedback',
+    'Quality study material', 'Mentoring and care', 'Tech-enabled classrooms',
+    'Safe and disciplined campus', 'Strong results', 'Board and entrance prep together',
+    'Hostel and food'
+  ];
+  const IMPROVES = [
+    'Transport timings', 'Workload and pressure', 'Communication with parents',
+    'Faculty consistency', 'Facilities', 'Fees and value'
+  ];
+
+  // ---- State ---------------------------------------------------------------
+  const state = { rating: 0, role: 'Student', program: '', positives: new Set(), improves: new Set() };
+
+  const $ = (id) => document.getElementById(id);
+
+  // ---- Stars ---------------------------------------------------------------
+  const STAR_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg>';
+  const starsEl = $('stars');
+  for (let i = 1; i <= 5; i++) {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'star'; b.innerHTML = STAR_SVG;
+    b.setAttribute('aria-label', i + (i === 1 ? ' star' : ' stars') + ', ' + LABELS[i]);
+    b.setAttribute('aria-pressed', 'false');
+    b.addEventListener('click', () => setRating(i));
+    starsEl.appendChild(b);
+  }
+  function setRating(n) {
+    state.rating = n;
+    [...starsEl.children].forEach((el, idx) => {
+      el.classList.toggle('on', idx < n);
+      el.setAttribute('aria-pressed', String(idx + 1 === n));
+    });
+    $('starLabel').textContent = LABELS[n];
+    $('lowMsg').classList.toggle('hidden', n > 3);
+    const first = $('stepDetails').classList.contains('hidden');
+    $('stepDetails').classList.remove('hidden');
+    if (first) setTimeout(() => $('stepDetails').scrollIntoView({ behavior: 'smooth', block: 'start' }), 120);
+    // Rating changed after a draft exists: ask for a fresh draft
+    if (!$('stepDraft').classList.contains('hidden')) {
+      $('stepDraft').classList.add('hidden');
+    }
+  }
+
+  // ---- Chips ---------------------------------------------------------------
+  function buildChips(containerId, items, opts) {
+    const box = $(containerId);
+    items.forEach((label) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'chip' + (opts.improve ? ' improve' : '');
+      b.textContent = label;
+      b.setAttribute('aria-pressed', 'false');
+      b.addEventListener('click', () => opts.onToggle(label, b));
+      box.appendChild(b);
+    });
+  }
+  function singleSelect(key, allowNone) {
+    return (label, btn) => {
+      const was = btn.getAttribute('aria-pressed') === 'true';
+      btn.parentElement.querySelectorAll('.chip').forEach((c) => c.setAttribute('aria-pressed', 'false'));
+      if (was && allowNone) { state[key] = ''; return; }
+      btn.setAttribute('aria-pressed', 'true');
+      state[key] = label;
+    };
+  }
+  function multiSelect(set) {
+    return (label, btn) => {
+      if (set.has(label)) { set.delete(label); btn.setAttribute('aria-pressed', 'false'); }
+      else { set.add(label); btn.setAttribute('aria-pressed', 'true'); }
+    };
+  }
+  buildChips('roleChips', ROLES, { onToggle: singleSelect('role', false) });
+  buildChips('programChips', PROGRAMS, { onToggle: singleSelect('program', true) });
+  buildChips('positiveChips', POSITIVES, { onToggle: multiSelect(state.positives) });
+  buildChips('improveChips', IMPROVES, { improve: true, onToggle: multiSelect(state.improves) });
+  $('roleChips').querySelector('.chip').setAttribute('aria-pressed', 'true'); // Student by default
+
+  // ---- Counters ------------------------------------------------------------
+  $('notes').addEventListener('input', (e) => { $('notesCount').textContent = e.target.value.length; });
+  $('draft').addEventListener('input', (e) => { $('draftCount').textContent = e.target.value.length; });
+
+  // ---- Drafting (runs entirely in the browser: no server, no API key) ------
+  const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
+  function joinList(arr) {
+    if (arr.length <= 1) return arr.join('');
+    return arr.slice(0, -1).join(', ') + ' and ' + arr[arr.length - 1];
+  }
+
+  const POS_PHRASE = {
+    'Expert faculty': 'the expert faculty',
+    'Clears doubts patiently': 'the patient doubt-clearing',
+    'Regular tests and feedback': 'regular tests with feedback',
+    'Quality study material': 'the quality of the study material',
+    'Mentoring and care': 'the mentoring and care',
+    'Tech-enabled classrooms': 'the tech-enabled classrooms',
+    'Safe and disciplined campus': 'the safe and disciplined campus',
+    'Strong results': 'the strong results',
+    'Board and entrance prep together': 'preparing for boards and entrance exams together',
+    'Hostel and food': 'the hostel and food'
+  };
+  const IMP_PHRASE = {
+    'Transport timings': 'transport timings',
+    'Workload and pressure': 'the workload and pressure',
+    'Communication with parents': 'communication with parents',
+    'Faculty consistency': 'faculty consistency',
+    'Facilities': 'the facilities',
+    'Fees and value': 'the fees versus the value'
+  };
+  const PROG_ADJ = { 'NEET': 'NEET', 'JEE': 'JEE', 'CET': 'CET', 'PU Board': 'PU', 'Foundation': 'Foundation' };
+
+  const FEEL = {
+    5: ['I had an excellent experience', 'I have had a great experience', 'I was very happy with my experience'],
+    4: ['I had a good experience', 'I was happy with my experience'],
+    3: ['I found the experience okay overall', 'I had a mixed experience'],
+    2: ['I felt the experience fell short in places', 'I found the experience below my expectations'],
+    1: ['I was disappointed with my experience', 'I had a poor experience']
+  };
+  const LEAD_POS = {
+    hi: ['I especially liked', 'What stood out for me:', 'I really appreciated'],
+    mid: ['On the positive side, I liked', 'The good points:'],
+    lo: ['In fairness, I liked', 'To be fair, I appreciated']
+  };
+  const LEAD_IMP = {
+    hi: ['Areas that could improve a little:', 'A little room for improvement:'],
+    mid: ['Areas that could be better:', 'I felt these could improve:'],
+    lo: ['My main concerns were', 'The areas that disappointed me:']
+  };
+  const CLOSE = {
+    5: ['I would recommend it to other students and parents.', 'Highly recommended.', 'Would recommend it to anyone considering this campus.'],
+    4: ['I would recommend it.', 'Overall, a good place to learn.'],
+    3: ['Overall, there is potential and I hope the weaker areas improve.', 'I hope the weaker areas improve over time.'],
+    2: ['I hope the management takes this feedback on board.', 'I hope things improve.'],
+    1: ['I hope the management takes this feedback seriously.', 'I hope things improve.']
+  };
+
+  function whoPhrase() {
+    const p = state.program ? PROG_ADJ[state.program] + ' ' : '';
+    if (state.role === 'Parent') return pick(['As the parent of a ' + p + 'student at', 'As a parent with a ' + p + 'student at']);
+    if (state.role === 'Alumnus') {
+      return state.program ? 'As a former ' + p + 'student at' : pick(['As an alumnus of', 'As a former student at']);
+    }
+    return pick(['As a ' + p + 'student at', 'Being a ' + p + 'student at']);
+  }
+
+  // Builds a draft only from what the customer picked or typed. Nothing is invented.
+  function composeDraft() {
+    const r = state.rating;
+    const band = r >= 4 ? 'hi' : r === 3 ? 'mid' : 'lo';
+    const campus = CONFIG.campus + (Math.random() < 0.5 ? ' on Kanakapura Road' : '');
+    const parts = [whoPhrase() + ' ' + campus + ', ' + pick(FEEL[r]) + '.'];
+
+    const pos = [...state.positives].map((k) => POS_PHRASE[k]).filter(Boolean);
+    const imp = [...state.improves].map((k) => IMP_PHRASE[k]).filter(Boolean);
+    if (pos.length) parts.push(pick(LEAD_POS[band]) + ' ' + joinList(pos) + '.');
+    if (imp.length) parts.push(pick(LEAD_IMP[band]) + ' ' + joinList(imp) + '.');
+
+    let notes = $('notes').value.trim().replace(/\s+/g, ' ');
+    if (notes) {
+      if (!/[.!?।॥…]$/.test(notes)) notes += '.';
+      parts.push(notes);
+    }
+    parts.push(pick(CLOSE[r]));
+    return parts.join(' ');
+  }
+
+  let lastText = '';
+  function makeDraft() {
+    if (!state.rating) return;
+    let text = composeDraft(), tries = 0;
+    while (text === lastText && tries++ < 10) text = composeDraft();   // "different draft" really differs
+    lastText = text;
+    $('draft').value = text;
+    $('draftCount').textContent = text.length;
+    const hasPicks = state.positives.size || state.improves.size || $('notes').value.trim();
+    $('tipMsg').classList.toggle('hidden', !!hasPicks);
+    $('stepDraft').classList.remove('hidden');
+    $('stepDraft').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  $('draftBtn').addEventListener('click', makeDraft);
+  $('redoBtn').addEventListener('click', makeDraft);
+
+  // ---- Copy / open Google --------------------------------------------------
+  function copyText(text) {
+    // Runs inside the click handler so it stays allowed on iOS/Android
+    try { if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text); } catch (e) {}
+    const ta = $('draft');
+    const keep = [ta.selectionStart, ta.selectionEnd];
+    ta.focus(); ta.select();
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) {}
+    ta.setSelectionRange(keep[0], keep[1]);
+    return ok;
+  }
+  const openBtn = $('openBtn');
+  openBtn.href = REVIEW_URL;
+  openBtn.addEventListener('click', () => {
+    copyText($('draft').value.trim());
+    toast('Copied. Paste it on Google and tap Post.');
+  });
+  $('copyBtn').addEventListener('click', () => {
+    copyText($('draft').value.trim());
+    toast('Copied to clipboard');
+  });
+
+  // ---- Toast ---------------------------------------------------------------
+  let toastTimer;
+  function toast(msg) {
+    const t = $('toast');
+    t.textContent = msg; t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
+  }
+</script>
+</body>
+</html>
