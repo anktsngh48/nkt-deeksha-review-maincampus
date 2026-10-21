@@ -337,16 +337,16 @@
   const PROG_ADJ = { 'NEET': 'NEET', 'JEE': 'JEE', 'CET': 'CET', 'PU Board': 'PU', 'Foundation': 'Foundation' };
 
   const FEEL = {
-    5: ['I had an excellent experience', 'I have had a great experience', 'I was very happy with my experience'],
-    4: ['I had a good experience', 'I was happy with my experience'],
-    3: ['I found the experience okay overall', 'I had a mixed experience'],
-    2: ['I felt the experience fell short in places', 'I found the experience below my expectations'],
-    1: ['I was disappointed with my experience', 'I had a poor experience']
+    5: ['I have had a wonderful experience', 'my experience has been truly excellent', 'I could not be happier with my experience', 'it has been a fantastic experience'],
+    4: ['I have had a really good experience', 'my experience has been very positive', 'I am very happy with my experience here'],
+    3: ['I have had a good experience overall', 'my experience has been positive in many ways'],
+    2: ['I have seen some good things here', 'there is a lot of good here to build on'],
+    1: ['I appreciate the effort the team puts in', 'I can see the team is trying hard']
   };
   const LEAD_POS = {
-    hi: ['I especially liked', 'What stood out for me:', 'I really appreciated'],
-    mid: ['On the positive side, I liked', 'The good points:'],
-    lo: ['In fairness, I liked', 'To be fair, I appreciated']
+    hi: ['I especially loved', 'What really stood out for me was', 'I truly appreciated', 'A big thank you for'],
+    mid: ['I really liked', 'I appreciated', 'I enjoyed'],
+    lo: ['I did appreciate', 'I valued']
   };
   const LEAD_IMP = {
     hi: ['Areas that could improve a little:', 'A little room for improvement:'],
@@ -354,11 +354,13 @@
     lo: ['My main concerns were', 'The areas that disappointed me:']
   };
   const CLOSE = {
-    5: ['I would recommend it to other students and parents.', 'Highly recommended.', 'Would recommend it to anyone considering this campus.'],
-    4: ['I would recommend it.', 'Overall, a good place to learn.'],
-    3: ['Overall, there is potential and I hope the weaker areas improve.', 'I hope the weaker areas improve over time.'],
-    2: ['I hope the management takes this feedback on board.', 'I hope things improve.'],
-    1: ['I hope the management takes this feedback seriously.', 'I hope things improve.']
+    5: ['I would highly recommend it to every student and parent.', 'Thank you to the whole team. Highly recommended!',
+        'If you are preparing for competitive exams, this is the place to be.', 'Grateful to be part of this campus. Highly recommended!'],
+    4: ['I would happily recommend it to other students and parents.', 'A great place to learn and grow. Recommended!',
+        'Thank you to the teachers and staff for their support.'],
+    3: ['I look forward to an even better experience ahead.', 'Thank you to the team, and I am sure it will keep getting better.'],
+    2: ['With a few improvements, I am confident it can be even better.', 'I look forward to seeing things get better.'],
+    1: ['I hope my feedback helps make things better.', 'I look forward to seeing improvements.']
   };
 
   function whoPhrase() {
